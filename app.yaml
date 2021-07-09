@@ -1,0 +1,11 @@
+runtime: python39
+
+#includes: secret.yaml
+
+#secret.yamlに以下を保存
+#env_variables:
+#  CHANNEL_ACCESS_TOKEN: "blah"
+#  CHANNEL_SECRET: "blah"
+#  USER_ID: "blah"
+#  SPREADSHEET_KEY: 'blah'
+#  JSONF: "blah"
