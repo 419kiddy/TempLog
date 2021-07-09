@@ -1,11 +1,3 @@
-#chennel secret
-#a7c24d4ed69fd8b714e639ed8bd4e25f
-
-#UserID
-#U026cdb8e7a15bdfc128f8c482973839c
-
-#token
-#k0o5m0gn/YSvukOL+aekioyf4+q+4THuo1eGa5s3n4EPzPgkFUzsEJZkHCFCI49riiXB2rK67kq21QlQQF8NpF4Mn/VBvgnf7AXbvs5of74F/mpBOdOBeR4y/mC7Whx8JEeq4AKoxHXsffrWzTyCSgdB04t89/1O/w1cDnyilFU=
 #クラウドファンクション上に置いているコードです
 
 import os
