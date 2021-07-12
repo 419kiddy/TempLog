@@ -1,2 +1,5 @@
 secret.yaml
 templog-319315-4aae38103ead.json
+.gcloudignore
+.vscode
+.gitignore
