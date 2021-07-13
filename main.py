@@ -57,7 +57,7 @@ def get_temp(string):
 #スプレッドシートに書き込み
 def write_temp(profile, event):
     ws = connect_gspread(JSONF, SPREADSHEET_KEY)
-    write_point = len(ws.col_values(1))+1
+    write_point = int(ws.acell("G2").value)
     utc_dt = datetime.fromtimestamp(event.timestamp/1000)
     jst_dt = utc_dt + timedelta(hours=9)
     ws.update_cell(write_point, 1, jst_dt.strftime("%Y/%m/%d"))
@@ -66,6 +66,21 @@ def write_temp(profile, event):
     ws.update_cell(write_point, 4, profile.user_id)
     ws.update_cell(write_point, 5, profile.display_name)
     ws.update_cell(write_point, 6, get_health(event.postback.data))
+    ws.update_acell("G2", write_point+1)
+
+
+def show_log(profile):
+    ws = connect_gspread(JSONF, SPREADSHEET_KEY)
+    write_point = int(ws.acell("G2").value)
+    #ws.update_acell("G2", write_point+1)
+
+    logs = ""
+    for i in range(2, write_point):
+        row = ws.row_values(i)
+        if row[3] == profile.user_id:
+            logs += row[0]+" "+row[1]+" "+row[2]+" "+row[5]+"\n"
+        
+    return logs[:-1]
 
 
 @app.route("/callback", methods=['POST'])
@@ -116,6 +131,14 @@ def handle_message(event):
             event.reply_token,
             buttons_template_message
         )
+    elif event.message.text == "履歴":
+        line_bot_api.reply_message(
+            event.reply_token,
+            TextSendMessage(
+                text=show_log(profile)
+            )
+        )
+
     else:
         line_bot_api.reply_message(
             event.reply_token,
